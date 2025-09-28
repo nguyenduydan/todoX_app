@@ -11,7 +11,7 @@ const AddTask = ({handleNewTaskAdded}) => {
   const addTask = async () => {
     if (newTaskTitle.trim()) {
       try {
-        await axios.post('http://localhost:3000/api/tasks', { title: newTaskTitle })
+        await axios.post('/tasks', { title: newTaskTitle })
         toast.success(`Nhiệm vụ ${newTaskTitle} đã được thêm!`)
         handleNewTaskAdded()
       } catch (error) {
