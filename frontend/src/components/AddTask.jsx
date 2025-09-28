@@ -3,15 +3,15 @@ import { Card } from './ui/card';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { Plus } from 'lucide-react';
-import axios from 'axios';
 import { toast } from 'sonner';
+import api from '@/lib/axios';
 
 const AddTask = ({handleNewTaskAdded}) => {
   const [newTaskTitle, setNewTaskTitle] = useState("")
   const addTask = async () => {
     if (newTaskTitle.trim()) {
       try {
-        await axios.post('/tasks', { title: newTaskTitle })
+        await api.post('/tasks', { title: newTaskTitle })
         toast.success(`Nhiệm vụ ${newTaskTitle} đã được thêm!`)
         handleNewTaskAdded()
       } catch (error) {
@@ -40,7 +40,7 @@ const AddTask = ({handleNewTaskAdded}) => {
           className="h-12 text-base bg-slate-50 sm:flex-1 border-border/50 focus:border-primary/50 focus:ring-primary/20"
           value={newTaskTitle}
           onChange={(e) => setNewTaskTitle(e.target.value)}
-          onKeyPress={newTaskTitle.trim() && handleKeyPress}
+          onKeyPress={handleKeyPress}
         />
 
         <Button

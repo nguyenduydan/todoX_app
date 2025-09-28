@@ -27,7 +27,7 @@ if (process.env.STATUS_ENV !== "production") {
 // routes API
 app.use("/api/tasks", taskRouter);
 
-console.log(process.env.STATUS_ENV)
+// console.log(process.env.STATUS_ENV)
 
 // phục vụ frontend build khi production
 if (process.env.STATUS_ENV === "production") {
