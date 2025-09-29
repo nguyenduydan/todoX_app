@@ -6,19 +6,19 @@ import { Filter } from 'lucide-react';
 
 const StatsAndFilters = ({compeleteTasksCount = 0, activeTasksCount = 0, filter = "all", setFilter }) => {
   return (
-    <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 '>
+    <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4 '>
       {/* Thong ke */}
-      <div className='flex gap-3'>
+      <div className='flex gap-3 sm:items-center justify-center'>
         <Badge
           variant="secondary"
-          className="bg-black/50 py-2 text-accent-foreground border-info/20"
+          className="bg-black/50 py-2 text-accent-foreground border-info/20 pointer-events-none"
         >
           {activeTasksCount} {FilterType.active}
         </Badge>
 
         <Badge
           variant="secondary"
-          className="bg-black/50 py-2 text-success border-info/20"
+          className="bg-black/50 py-2 text-success border-info/20 pointer-events-none"
         >
           {compeleteTasksCount} {FilterType.complete}
         </Badge>
@@ -31,7 +31,7 @@ const StatsAndFilters = ({compeleteTasksCount = 0, activeTasksCount = 0, filter 
             key={type}
             variant={filter === type ? "gradient" : "ghost"}
             size ="sm"
-            className="capitalize"
+            className="capitalize cursor-pointer"
             onClick={() => setFilter(type)}
           >
             <Filter className='size-4'/>

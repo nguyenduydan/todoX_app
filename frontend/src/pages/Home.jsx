@@ -59,16 +59,16 @@ const Home = () => {
   }
 
   //bien
-  const filterTask = taskBuffer.filter((task) =>{
+  const filterTask = (taskBuffer || []).filter((task) => {
     switch (filter) {
       case 'active':
-        return task.status === 'active'
+        return task.status === 'active';
       case 'complete':
-        return task.status === 'complete'
+        return task.status === 'complete';
       default:
-        return true
+        return true;
     }
-  })
+  });
 
   const visibleTask = filterTask.slice(
     (page - 1) * visibleTaskLimit,
