@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 import api from '@/lib/axios';
 import { visibleTaskLimit } from '@/lib/data';
+import { Button } from '@/components/ui/button';
 
 const Home = () => {
   const [taskBuffer, setTaskBuffer] = useState([])
@@ -58,6 +59,20 @@ const Home = () => {
     setPage(newPage)
   }
 
+  const handleLogout = () => {
+    // Xóa token + user
+    localStorage.removeItem("token");
+
+    // Thông báo
+    toast.success("Đăng xuất thành công!");
+
+    // Chuyển hướng sau 1 chút để user thấy toast
+    setTimeout(() => {
+      window.location.href = "/auth";
+    }, 300);
+  };
+
+
   //bien
   const filterTask = (taskBuffer || []).filter((task) => {
     switch (filter) {
@@ -97,11 +112,18 @@ const Home = () => {
       }}
     />
       <div className='container pt-8 mx-auto relative z-10'>
+
         <div className='w-full max-w-2xl p-6 mx-auto space-y-6 text-white'>
 
           {/* Header */}
           <Header />
-
+          <div className="flex justify-center mb-4">
+            <Button onClick={handleLogout} variant="gradient" className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white/50 dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                Đăng xuất
+              </span>
+            </Button>
+          </div>
           {/* Create Task */}
           <AddTask handleNewTaskAdded={handleTaskChange}/>
 

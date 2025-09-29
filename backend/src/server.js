@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 
 import { connectDB } from "./configs/db.js";
 import taskRouter from "./routes/tasksRouter.js";
+import authRouter from "./routes/authRouter.js"
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ if (process.env.STATUS_ENV !== "production") {
 }
 
 // routes API
+app.use("/api/auth", authRouter);
 app.use("/api/tasks", taskRouter);
 
 // console.log(process.env.STATUS_ENV)
